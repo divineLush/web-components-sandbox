@@ -1,0 +1,23 @@
+{
+  "name": "web-components-sandbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/divineLush/web-components-sandbox.git"
+  },
+  "author": "divineLush",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/divineLush/web-components-sandbox/issues"
+  },
+  "homepage": "https://github.com/divineLush/web-components-sandbox#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
