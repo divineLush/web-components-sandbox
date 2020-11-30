@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: #ddfbdd;
+    background-color: #0f400f;
+    font-family: monospace;
+}
+
+h1 {
+    text-align: center;
+}
