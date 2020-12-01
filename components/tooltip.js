@@ -17,7 +17,7 @@ class Tooltip extends HTMLElement {
 
                 .fancy-tooltip__content {
                     position: absolute;
-                    background-color: #701a70;
+                    background-color: #fbddfb;
                     padding: 10px;
                     z-index: 10;
                 }
