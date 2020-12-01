@@ -4,9 +4,26 @@ class Tooltip extends HTMLElement {
         this._tooltipContainter
         this._tooltipText = 'Default tooltip text'
         this.attachShadow({ mode: 'open' })
-        const template = document.getElementById('tooltip-template')
+        // const template = document.getElementById('tooltip-template')
         // shadow DOM can be accessed even before the element has been rendered
-        this.shadowRoot.appendChild(template.content.cloneNode(true))
+        // this.shadowRoot.appendChild(template.content.cloneNode(true))
+
+        // scoped styles
+        this.shadowRoot.innerHTML = `
+            <style>
+                .fancy-tooltip {
+                    position: relative;
+                }
+
+                .fancy-tooltip__content {
+                    position: absolute;
+                    background-color: #701a70;
+                    padding: 10px;
+                    z-index: 10;
+                }
+            </style>
+            <slot>Default slot</slot>
+            <span>:-*</span>`
     }
 
     connectedCallback () {
