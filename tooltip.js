@@ -3,6 +3,7 @@ class Tooltip extends HTMLElement {
         super()
         this._tooltipContainter
         this._tooltipText = 'Default tooltip text'
+        this.attachShadow({ mode: 'open' })
     }
 
     connectedCallback () {
@@ -13,7 +14,8 @@ class Tooltip extends HTMLElement {
         icon.textContent = ' :-*'
         icon.addEventListener('mouseenter', this._showTooltip.bind(this))
         icon.addEventListener('mouseleave', this._hideTooltip.bind(this))
-        this.appendChild(icon)
+
+        this.shadowRoot.appendChild(icon)
         this.classList.add('fancy-tooltip')
     }
 
@@ -21,11 +23,11 @@ class Tooltip extends HTMLElement {
         this._tooltipContainter = document.createElement('div')
         this._tooltipContainter.textContent = this._tooltipText
         this._tooltipContainter.classList.add('fancy-tooltip__content')
-        this.appendChild(this._tooltipContainter)
+        this.shadowRoot.appendChild(this._tooltipContainter)
     }
 
     _hideTooltip () {
-        this.removeChild(this._tooltipContainter)
+        this.shadowRoot.removeChild(this._tooltipContainter)
     }
 }
 
