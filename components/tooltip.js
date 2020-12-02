@@ -17,7 +17,7 @@ class Tooltip extends HTMLElement {
 
                 .fancy-tooltip__content {
                     position: absolute;
-                    background-color: #fbddfb;
+                    background-color: #f5e3f5;
                     padding: 10px;
                     z-index: 10;
                 }
@@ -34,7 +34,6 @@ class Tooltip extends HTMLElement {
         icon.addEventListener('mouseenter', this._showTooltip.bind(this))
         icon.addEventListener('mouseleave', this._hideTooltip.bind(this))
 
-        this.shadowRoot.appendChild(icon)
         this.classList.add('fancy-tooltip')
     }
 
