@@ -1,6 +1,8 @@
 class ToggleButton extends HTMLElement {
     constructor () {
         super()
+        this._wrapper
+        this._button
         this._visibility = false
         this.attachShadow({ mode: 'open' })
 
@@ -18,6 +20,9 @@ class ToggleButton extends HTMLElement {
         if (this.hasAttribute('initialVisibility'))
             this._visibility = this.getAttribute('initialVisibility')
 
+        this._wrapper = this.shadowRoot.querySelector('.fancy-toggle-button__content-wrapper')
+        this._button = this.shadowRoot.querySelector('.fancy-toggle-button__btn')
+
         this._updateButtonName()
         this._toggleContentVisibility()
 
@@ -31,9 +36,8 @@ class ToggleButton extends HTMLElement {
     }
 
     _toggleContentVisibility () {
-        const wrapper = this.shadowRoot.querySelector('.fancy-toggle-button__content-wrapper')
         const visibility = this._visibility ? 'block' : 'none'
-        wrapper.style.display = visibility
+        this._wrapper.style.display = visibility
 
         this._visibility = !this._visibility
         this._updateButtonName()
@@ -41,8 +45,7 @@ class ToggleButton extends HTMLElement {
 
     _updateButtonName () {
         const name = this._visibility ? 'Show' : 'Hide'
-        const button = this.shadowRoot.querySelector('button')
-        button.textContent = name
+        this._button.textContent = name
     }
 }
 
