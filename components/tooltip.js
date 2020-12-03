@@ -3,6 +3,7 @@ class Tooltip extends HTMLElement {
         super()
         this._tooltipContainter
         this._tooltipText = 'Default tooltip text'
+        this._icon
         this.attachShadow({ mode: 'open' })
         // const template = document.getElementById('tooltip-template')
         // shadow DOM can be accessed even before the element has been rendered
@@ -59,20 +60,32 @@ class Tooltip extends HTMLElement {
         if (this.hasAttribute('text'))
             this._tooltipText = this.getAttribute('text')
 
-        const icon = this.shadowRoot.querySelector('span')
-        icon.addEventListener('mouseenter', this._showTooltip.bind(this))
-        icon.addEventListener('mouseleave', this._hideTooltip.bind(this))
+        this._icon = this.shadowRoot.querySelector('span')
+        this._icon.addEventListener('mouseenter', this._showTooltip.bind(this))
+        this._icon.addEventListener('mouseleave', this._hideTooltip.bind(this))
 
         this.classList.add('fancy-tooltip')
     }
 
     attributeChangedCallback (name, oldValue, newValue) {
         console.log(name, oldValue, newValue)
+        if (oldValue === newValue)
+            return
+
+        if (name === 'text')
+            this._tooltipText = newValue
     }
 
     static get observedAttributes () {
         // all attribute names i want to listen to changes
         return ['text']
+    }
+
+    disconnectedCallback () {
+        console.log('disconnected')
+        // cleanup event listeners
+        this._icon.removeEventListener('mouseenter', this._showTooltip)
+        this._icon.removeEventListener('mouseleave', this._hideTooltip)
     }
 
     _showTooltip () {
