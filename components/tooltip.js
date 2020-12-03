@@ -66,6 +66,15 @@ class Tooltip extends HTMLElement {
         this.classList.add('fancy-tooltip')
     }
 
+    attributeChangedCallback (name, oldValue, newValue) {
+        console.log(name, oldValue, newValue)
+    }
+
+    static get observedAttributes () {
+        // all attribute names i want to listen to changes
+        return ['text']
+    }
+
     _showTooltip () {
         this._tooltipContainter = document.createElement('div')
         this._tooltipContainter.textContent = this._tooltipText
