@@ -17,8 +17,8 @@ class ToggleButton extends HTMLElement {
     }
 
     connectedCallback () {
-        if (this.hasAttribute('initialVisibility'))
-            this._visibility = this.getAttribute('initialVisibility')
+        if (this.hasAttribute('initial-visibility'))
+            this._visibility = this.getAttribute('initial-visibility')
 
         this._wrapper = this.shadowRoot.querySelector('.fancy-toggle-button__content-wrapper')
         this._button = this.shadowRoot.querySelector('.fancy-toggle-button__btn')
