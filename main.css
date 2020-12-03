@@ -9,3 +9,12 @@ body {
 h1 {
     text-align: center;
 }
+
+.highlight {
+    font-weight: bold;
+    text-decoration: overline; /* overrides ::slotted() styles in tooltip.js */
+}
+
+fancy-tooltip {
+    background: #f5e3f5;
+}

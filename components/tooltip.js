@@ -9,6 +9,10 @@ class Tooltip extends HTMLElement {
         // this.shadowRoot.appendChild(template.content.cloneNode(true))
 
         // scoped styles
+        // highlight css class also exists in main.css but there is no collision
+        // ::slotted() can select the top most element of slot
+        // host selector styles the whole host component
+        // styles in light DOM will always override ::slotted() and :host styles
         this.shadowRoot.innerHTML = `
             <style>
                 .fancy-tooltip {
@@ -21,9 +25,21 @@ class Tooltip extends HTMLElement {
                     padding: 10px;
                     z-index: 10;
                 }
+
+                .highlight {
+                    color: #801e80;
+                }
+
+                ::slotted(span) {
+                    text-decoration: underline;
+                }
+
+                :host {
+                    background: #ccc;
+                }
             </style>
             <slot>Default slot</slot>
-            <span>:-*</span>`
+            <span class="highlight">:-*</span>`
     }
 
     connectedCallback () {
