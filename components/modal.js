@@ -83,8 +83,8 @@ class Modal extends HTMLElement {
     }
 
     connectedCallback () {
-        const actionsButton = this.shadowRoot.querySelector('.actions__button')
-        actionsButton.addEventListener('click', this.close.bind(this))
+        const actionButtons = this.shadowRoot.querySelectorAll('.actions__button')
+        actionButtons.forEach(btn => btn.addEventListener('click', this.close.bind(this)))
     }
 
     open () {
