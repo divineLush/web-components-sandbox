@@ -72,8 +72,8 @@ class Modal extends HTMLElement {
                     <slot></slot>
                 </section>
                 <section class="actions">
-                    <button class="actions__button">Cancel</button>
-                    <button class="actions__button">Okay</button>
+                    <button class="actions__button actions__button--cancel">Cancel</button>
+                    <button class="actions__button actions__button--confirm">Okay</button>
                 </section>
             </div>
         `
@@ -85,6 +85,23 @@ class Modal extends HTMLElement {
     connectedCallback () {
         const actionButtons = this.shadowRoot.querySelectorAll('.actions__button')
         actionButtons.forEach(btn => btn.addEventListener('click', this.close.bind(this)))
+
+        const cancelButton = this.shadowRoot.querySelector('.actions__button--cancel')
+        cancelButton.addEventListener('click', event => {
+            // triggering event inside shadow DOM
+            const cancelEvent = new Event('cancel', {
+                bubbles: true, // allow event hoisting
+                composed: true // allow event to leave shadow DOM
+            })
+            event.target.dispatchEvent(cancelEvent)
+        })
+
+        const confirmButton = this.shadowRoot.querySelector('.actions__button--confirm')
+        confirmButton.addEventListener('click', event => {
+            // triggering event on out element itself
+            const confirmEvent = new Event('confirm')
+            this.dispatchEvent(confirmEvent)
+        })
     }
 
     open () {

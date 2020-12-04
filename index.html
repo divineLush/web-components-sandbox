@@ -39,6 +39,9 @@
         confirmButton.addEventListener('click', () => {
             modal.open()
         })
+
+        modal.addEventListener('cancel', () => console.log('cancel'))
+        modal.addEventListener('confirm', () => console.log('confirm'))
     </script>
 </body>
 </html>
