@@ -31,7 +31,7 @@ class Modal extends HTMLElement {
                     justify-content: space-between;
                     opacity: 0;
                     pointer-events: none;
-                    transition: all 1s;
+                    transition: all 1s ease-out;
                 }
 
                 :host([opened]) .backdrop,
