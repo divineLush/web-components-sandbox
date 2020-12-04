@@ -102,6 +102,9 @@ class Modal extends HTMLElement {
             const confirmEvent = new Event('confirm')
             this.dispatchEvent(confirmEvent)
         })
+
+        const backdrop = this.shadowRoot.querySelector('.backdrop')
+        backdrop.addEventListener('click', this.close.bind(this))
     }
 
     open () {
