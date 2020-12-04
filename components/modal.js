@@ -78,6 +78,19 @@ class Modal extends HTMLElement {
             </div>
         `
     }
+
+    connectedCallback () {
+        const actionsButton = this.shadowRoot.querySelector('.actions__button')
+        actionsButton.addEventListener('click', this.close.bind(this))
+    }
+
+    open () {
+        this.setAttribute('opened', '')
+    }
+
+    close () {
+        this.removeAttribute('opened')
+    }
 }
 
 customElements.define('fancy-modal', Modal)
