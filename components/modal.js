@@ -12,6 +12,9 @@ class Modal extends HTMLElement {
                     height: 100vh;
                     background: rgba(0, 0, 0, 0.75);
                     z-index: 10;
+                    opacity: 0;
+                    pointer-events: none;
+                    transition: all 1s;
                 }
 
                 .modal {
@@ -19,15 +22,60 @@ class Modal extends HTMLElement {
                     top: 15vh;
                     left: 25%;
                     width: 50%;
-                    height: 20rem;
                     z-index: 100;
                     background: #e3f5e3;
                     border-radius: 3px;
                     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    opacity: 0;
+                    pointer-events: none;
+                    transition: all 1s;
+                }
+
+                :host([opened]) .backdrop,
+                :host([opened]) .modal {
+                    opacity: 1;
+                    pointer-events: all;
+                }
+
+                .header {
+                    padding: 1rem;
+                }
+
+                .header__title {
+                    font-size: 1.25rem;
+                }
+
+                .main {
+                    padding: 1rem;
+                }
+
+                .actions {
+                    border-top: 1px solid #0f400f;
+                    padding: 1rem;
+                    display: flex;
+                    justify-content: flex-end;
+                }
+
+                .actions__button {
+                    margin: 0 0.25rem;
                 }
             </style>
             <div class="backdrop"></div>
-            <div class="modal"></div>
+            <div class="modal">
+                <header class="header">
+                    <h1 class="header__title">Please Confirm</h1>
+                </header>
+                <section class="main">
+                    <slot></slot>
+                </section>
+                <section class="actions">
+                    <button class="actions__button">Cancel</button>
+                    <button class="actions__button">Okay</button>
+                </section>
+            </div>
         `
     }
 }

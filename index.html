@@ -26,7 +26,20 @@
         <fancy-toggle-button initial-visibility="1">
             <p>Hey hey hey hey!</p>
         </fancy-toggle-button>
-        <fancy-modal></fancy-modal>
+        <fancy-modal class="modal">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore dicta, voluptates mollitia, quisquam modi voluptas voluptatibus architecto error amet repudiandae dolore libero, ratione, in rerum aut atque eaque tempora minus.
+            </p>
+        </fancy-modal>
+        <button class="confirm">Confirm</button>
     </main>
+    <script>
+        const confirmButton = document.querySelector('.confirm')
+        const modal = document.querySelector('.modal')
+
+        confirmButton.addEventListener('click', () => {
+            modal.setAttribute('opened', '')
+        })
+    </script>
 </body>
 </html>
